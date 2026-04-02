@@ -4,23 +4,98 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+@font-face {
+  font-family: MontserratRegular;
+  src: url("../../public/fonts/montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: MontserratMedium;
+  src: url("../../public/fonts/montserrat/Montserrat-Medium.ttf");
+}
+
+@font-face {
+  font-family: MontserratBold;
+  src: url("../../public/fonts/montserrat/Montserrat-Bold.ttf");
+}
+
+@font-face {
+  font-family: PorshaRichela;
+  src: url("../../public/fonts/porcsha/PorshaRichela.ttf");
+}
 
 @theme inline {
+  --font-MontserratRegular: MontserratRegular, "sans-serif";
+  --font-MontserratMedium: MontserratMedium, "sans-serif";
+  --font-MontserratBold: MontserratBold, "sans-serif";
+  --font-PorshaRichela: PorshaRichela, "sans-serif";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono); */
+  --color-primary: #3b8496;
+
+  /* custom Animations */
+  --animation-duration: 40s;
+  --animation-direction: forwards;
+
+  --animate-scroll: scroll var(--animation-duration) var(--animation-direction)
+    linear infinite;
+  --animate-infinite-scroll: infinite-scroll 20s linear infinite;
+  --animate-infinite-scroll-left: infinite-scrollLeft 20s linear infinite;
+  --animate-infinite-scroll-left-slow: infinite-scrollLeftSlow 30s linear
+    infinite;
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes infinite-scrollLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes infinite-scrollLeftSlow {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: MontserratRegular, sans-serif;
+  overflow-x: hidden;
+}
+button:hover {
+  cursor: pointer;
+}
+html {
+  scroll-behavior: smooth;
 }
