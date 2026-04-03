@@ -99,3 +99,7 @@ button:hover {
 html {
   scroll-behavior: smooth;
 }
+
+::selection {
+  @apply bg-[#F0BEFA] text-black;
+}

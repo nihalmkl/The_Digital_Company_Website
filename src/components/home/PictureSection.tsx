@@ -232,12 +232,12 @@ export default function FutureSection() {
       
       {/* ─── Title Area ─── */}
       <div className="relative text-center z-20 mb-20 px-6">
-        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight text-zinc-900 relative inline-block z-20">
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight text-zinc-900 relative inline-block z-20 cursor-[url('/assets/icons/cursortext.svg'),text]">
           An agency built <br className="hidden md:block" /> for the future.
         </h2>
         
         <div className="relative block mt-2 md:mt-4 z-20">
-          <em className="text-4xl md:text-6xl font-serif italic text-zinc-800 relative inline-block pr-2 md:pr-4">
+          <em className="text-4xl md:text-6xl font-serif italic text-zinc-800 relative inline-block pr-2 md:pr-4 cursor-[url('/assets/icons/cursortext.svg'),text]">
             from TV to TikTok.
             
             <div ref={loveStickerRef} className="absolute -right-4 -top-8 w-20 h-20 md:w-32 md:h-32 pointer-events-none z-30">
@@ -316,7 +316,7 @@ height: "clamp(170px, 24vw, 340px)",
 
       {/* ─── Bottom Text ─── */}
       <div className="relative z-20 w-full flex justify-center px-6 mt-20">
-        <p className="text-center text-zinc-800 font-medium max-w-3xl leading-[1.6]" style={{ fontSize: "clamp(16px, 1.5vw, 22px)" }}>
+        <p className="text-center text-zinc-800 font-medium max-w-3xl leading-[1.6] cursor-[url('/assets/icons/cursortext.svg'),text]" style={{ fontSize: "clamp(16px, 1.5vw, 22px)" }}>
           To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs to out of home spectaculars.
         </p>
       </div>

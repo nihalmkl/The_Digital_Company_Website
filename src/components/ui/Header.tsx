@@ -132,9 +132,14 @@ export default function Header() {
       {/* CUSTOM TRUUS TOOLTIP CURSOR */}
       <div ref={truusCursorRef} className="fixed top-0 left-0 pointer-events-none z-[110] flex flex-col items-center">
         <div className="absolute bottom-full left-3 mb-1 bg-[#FFB1FF] text-black text-[13px] font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-sm">to home</div>
-        <svg className="absolute top-0 left-0" style={{ transform: 'translate(-30%, -10%)', filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.25))' }} width="26" height="26" viewBox="0 0 24 24" fill="white" stroke="black" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round">
-          <path d="M10 2.5a2.5 2.5 0 0 1 5 0v7h.5a2.5 2.5 0 0 1 5 0v2h.5a2.5 2.5 0 0 1 5 0v5.5a8.5 8.5 0 0 1-8.5 8.5h-4a8.5 8.5 0 0 1-8.5-8.5v-4.5a2.5 2.5 0 0 1 5 0v-6a2.5 2.5 0 0 1 5 0v-4.5z" />
-        </svg>
+        
+        <Image 
+  src="/assets/icons/cursorpointer.svg" 
+  alt="Cursor pointer" 
+  width={24} 
+  height={24} 
+  className="object-contain" 
+/>
       </div>
 
       {/* GLOBAL FIXED HEADER */}
@@ -184,10 +189,10 @@ export default function Header() {
           className="mix-blend-difference pointer-events-auto cursor-none origin-center"
         >
           <Image
-            src={isDarkMode ? "/assets/images/blacklogo.png" : "/assets/images/finallogo.png"}
+            src={isDarkMode ? "/assets/icons/digitallogo.svg" : "/assets/icons/digitallogo.svg"}
             alt="logo"
-            width={80}
-            height={20}
+            width={95}
+            height={30}
             className="object-contain"
           />
         </div>

@@ -9,16 +9,17 @@ import SquidGameDeck from "./SquidGameDeck";
 import PictureSection from "./PictureSection";
 import AnimatedTeamSection from "./TeamSection";
 import ServicesSection from "./Service";
+import SmoothScrollProvider from "../ui/SmoothScrollProvider";
+
 
 export default function HomePage() {
   return (
     // The main wrapper dictates the global background color (beige)
     <main className="relative w-full min-h-screen bg-[#EBE8E2] overflow-x-hidden font-sans">
       
-
       <IntroAnimation />
 
-  
+  <SmoothScrollProvider>
       <Header/>
 
       <div className="relative w-full flex flex-col">
@@ -52,6 +53,7 @@ export default function HomePage() {
         <FooterSection/>
         </div>
       </div>
+      </SmoothScrollProvider>
 
     </main>
   );

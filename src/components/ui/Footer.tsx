@@ -280,13 +280,13 @@ export default function FooterSection() {
         <div ref={colsRef} className="flex flex-col md:flex-row gap-16 md:gap-0 justify-between">
 
           {/* Col 1 – Looking for a job? */}
-          <div className="flex flex-col gap-6 min-w-0 md:w-1/3 pr-4">
-            <div className="inline-flex">
-              <div className="px-4 py-1.5 text-xs font-bold tracking-wide rounded-full bg-[#EBE8E2] text-black w-fit">
+          <div className="flex flex-col gap-6 min-w-0 md:w-1/3 pr-4 ">
+            <div className="inline-flex ">
+              <div className="px-4 py-1.5 text-xs font-bold tracking-wide rounded-full bg-[#EBE8E2] text-black w-fit ">
                 looking for a job?
               </div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white leading-tight tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-black text-white leading-tight tracking-tight cursor-[url('/assets/icons/cursortext.svg'),text]">
               not hiring right now :(
             </h2>
           </div>
@@ -331,16 +331,46 @@ export default function FooterSection() {
 
             {/* Social icons */}
             <div ref={socialsRef} className="flex items-center gap-5 pt-2">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-8 h-8 text-white hover:opacity-70 transition-opacity">
-                <LinkedInIcon />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-8 h-8 text-white hover:opacity-70 transition-opacity">
-                <InstagramIcon />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-8 h-8 text-white hover:opacity-70 transition-opacity">
-                <TikTokIcon />
-              </a>
-            </div>
+  
+ 
+  {/* LinkedIn */}
+  <a href="#" target="_blank" rel="noopener noreferrer" className="relative group flex justify-center items-center w-8 h-8">
+    {/* Pop-up Tooltip */}
+    {/* Changes: scale-0, duration-[600ms], spring bezier, rounded-full, px-4, text-[14px] */}
+    <div className="absolute bottom-5 left-5 mb-2 bg-[#FFB1FF] text-black text-[14px] font-bold tracking-wide px-4 py-1.5 rounded-full shadow-md opacity-0 translate-y-4 scale-0 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-bottom whitespace-nowrap">
+      click
+    </div>
+    {/* Icon Wrapper */}
+    <div className="w-full h-full text-white transition-opacity duration-300 group-hover:opacity-70">
+      <LinkedInIcon />
+    </div>
+  </a>
+
+  {/* Instagram */}
+  <a href="#" target="_blank" rel="noopener noreferrer" className="relative group flex justify-center items-center w-8 h-8">
+    {/* Pop-up Tooltip */}
+    <div className="absolute bottom-5 left-5 mb-2 bg-[#FFB1FF] text-black text-[14px] font-bold tracking-wide px-4 py-1.5 rounded-full shadow-md opacity-0 translate-y-4 scale-0 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-bottom whitespace-nowrap">
+      click
+    </div>
+    {/* Icon Wrapper */}
+    <div className="w-full h-full text-white transition-opacity duration-300 group-hover:opacity-70">
+      <InstagramIcon />
+    </div>
+  </a>
+
+  {/* TikTok */}
+  <a href="#" target="_blank" rel="noopener noreferrer" className="relative group flex justify-center items-center w-8 h-8">
+    {/* Pop-up Tooltip */}
+    <div className="absolute bottom-5 left-5 mb-2 bg-[#FFB1FF] text-black text-[14px] font-bold tracking-wide px-4 py-1.5 rounded-full shadow-md opacity-0 translate-y-4 scale-0 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-bottom whitespace-nowrap">
+      click
+    </div>
+    {/* Icon Wrapper */}
+    <div className="w-full h-full text-white transition-opacity duration-300 group-hover:opacity-70">
+      <TikTokIcon />
+    </div>
+  </a>
+
+</div>
           </div>
         </div>
       </div>
@@ -349,7 +379,7 @@ export default function FooterSection() {
       {/* This wrapper holds the giant wordmark at the bottom. 
         It is set to span wider than the screen to match the edge-to-edge look in the image.
       */}
-      <div ref={logoAreaRef} className="relative z-10 w-full mt-24" style={{ minHeight: "400px" }}>
+      <div ref={logoAreaRef} className="relative z-10 w-full mt-20" style={{ minHeight: "350px" }}>
 
         {/* Truus wordmark - Filled with the creamy off-white color */}
         <div
@@ -414,11 +444,25 @@ export default function FooterSection() {
         </div>
       </div>
 
-      {/* ── Credits button (Absolute bottom right) ────────────────── */}
-      <div className="absolute bottom-6 right-6 z-50">
-        <button className="bg-[#1A1A1A] text-white px-5 py-2 rounded-full text-[13px] font-bold tracking-wide hover:opacity-80 transition-opacity">
+      <div className="absolute bottom-6 right-6 z-50 group flex flex-col items-end">
+        
+        {/* Hover Card */}
+        <div className="absolute bottom-full right-0 mb-3 bg-[#0a0a0a] text-white border-3 border-white px-6 py-5 rounded-2xl flex gap-8 opacity-0 translate-y-3 scale-95 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 transition-all duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom-right w-max">
+          <div className="flex flex-col gap-0.5 cursor-[url('/assets/icons/cursortext.svg'),text]">
+            <span className="text-[19px] font-extrabold tracking-tight">design by</span>
+            <span className="text-[25px] font-normal tracking-tight">Jordan</span>
+          </div>
+          <div className="flex flex-col gap-0.5 cursor-[url('/assets/icons/cursortext.svg'),text]">
+            <span className="text-[19px] font-extrabold tracking-tight">code by</span>
+            <span className="text-[25px] font-normal tracking-tight">Dennis</span>
+          </div>
+        </div>
+
+        {/* Button */}
+        <button className="bg-[#0a0a0a] text-white px-4 py-1.5 rounded-full  text-[13px] font-bold tracking-wide transition-transform duration-300 ease-out group-hover:scale-[0.98]">
           credits
         </button>
+        
       </div>
 
     </footer>

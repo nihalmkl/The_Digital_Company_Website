@@ -201,7 +201,7 @@ export default function HeroSection() {
             style={{ overflow: "visible" }}
           >
             <h1
-              className="font-bold text-white leading-[1.08] tracking-tight"
+              className="font-bold text-white leading-[1.08] tracking-tight cursor-[url('/assets/icons/cursortext.svg'),text]"
               style={{ fontSize: "clamp(2.4rem, 5.8vw, 5.2rem)" }}
             >
               {/* Line 1 */}
