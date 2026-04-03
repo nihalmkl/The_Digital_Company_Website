@@ -189,11 +189,12 @@ export default function Header() {
           className="mix-blend-difference pointer-events-auto cursor-none origin-center"
         >
           <Image
-            src={isDarkMode ? "/assets/icons/digitallogo.svg" : "/assets/icons/digitallogo.svg"}
-            alt="logo"
-            width={95}
-            height={30}
-            className="object-contain"
+           src="/assets/icons/digitallogo.svg"
+  alt="logo"
+  width={95}
+  height={30}
+  className="object-contain"
+  
           />
         </div>
 

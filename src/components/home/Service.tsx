@@ -65,10 +65,6 @@ const StarBullet = ({ fill }: { fill: string }) => (
     <path d="M12.2765 7.03536V7.0403C12.2519 7.1343 12.0977 7.23633 12.0197 7.31177C11.5445 7.73351 11.0321 8.12803 10.6259 8.62706C10.3265 8.99562 10.0295 9.36293 9.75533 9.75128C9.66653 9.87186 9.55433 9.96647 9.47513 10.0901C9.39653 10.2157 9.34613 10.3579 9.26873 10.4865C9.18053 10.625 9.11813 10.7778 9.05033 10.9274C8.96213 11.1074 8.82353 11.2614 8.74373 11.4475C8.64773 11.6985 8.57213 11.9558 8.45573 12.1988C8.30093 12.6311 8.11493 13.0522 7.97573 13.49C7.89953 13.8171 7.91513 14.1585 7.81193 14.4806C7.72553 14.7793 7.71053 15.0873 7.71173 15.3964C7.70573 15.5127 7.73633 15.6951 7.65593 15.7483C7.62773 15.7557 7.58993 15.7199 7.55633 15.6617C7.44893 15.4645 7.40393 15.2326 7.29653 15.0279C7.13393 14.7094 6.87713 14.4559 6.68273 14.1572C6.57713 13.9989 6.48353 13.832 6.36533 13.6823C6.25973 13.5456 6.13073 13.4282 6.01673 13.2977C5.90753 13.1734 5.81633 13.0336 5.70653 12.9112C5.14013 12.3299 4.57133 11.7369 3.91793 11.2614C3.79493 11.1723 3.64673 11.1346 3.50753 11.0839C3.30113 10.9917 3.10253 10.8538 2.88293 10.7815C2.40293 10.6046 1.93733 10.3598 1.43633 10.2596C1.20593 10.2151 0.970727 10.212 0.736727 10.2107C0.555527 10.2052 0.0203267 10.2441 0.424127 9.98069C0.650927 9.83661 0.868127 9.68016 1.08713 9.52495C1.29353 9.3821 1.50893 9.25286 1.70393 9.09394C2.22653 8.61779 2.74913 8.15277 3.20813 7.60798C3.76013 6.9358 4.21373 6.18138 4.55453 5.36759C4.73033 4.99038 4.93673 4.62739 5.06693 4.23101C5.17553 3.83896 5.34293 3.46175 5.45093 3.07155C5.61113 2.35176 5.71013 1.61589 5.82173 0.888061C5.83433 0.813237 5.85113 0.755728 5.87093 0.750781C5.88893 0.744597 5.90873 0.775516 5.92793 0.829933C5.98313 0.989475 6.03353 1.15211 6.08753 1.31289C6.27773 1.91952 6.50993 2.51192 6.76673 3.08949C7.05473 3.75301 7.38413 4.41096 7.84553 4.96812C8.09333 5.25134 8.31833 5.55743 8.55593 5.84807C8.89613 6.20302 9.29213 6.52458 9.72413 6.73854C9.95513 6.85417 10.2005 6.95126 10.4573 6.98774C10.6247 7.01433 10.7819 7.0737 10.9523 7.09101C11.3123 7.12379 11.6693 7.03288 12.0257 6.99826C12.1391 6.98774 12.2645 6.96857 12.2759 7.03659L12.2765 7.03536Z" fill={fill}/>
   </svg>
 );
-
-/* ═══════════════════════════════════════════════════════════════════
-   CARD DATA
-═══════════════════════════════════════════════════════════════════ */
 const CARDS = [
   {
     id: 'brand',
@@ -147,84 +143,134 @@ export default function ServicesSection() {
   const svgLine1     = useRef<SVGPathElement>(null);
   const svgLine2     = useRef<SVGPathElement>(null);
 
-  /* ── helpers ──────────────────────────────────────────────────── */
-  const getResting = (i: number) => ({
-    rotation : CARDS[i].rot,
-    xPercent : CARDS[i].ox,
-    yPercent : CARDS[i].oy,
-    scale    : 1,
-    zIndex   : i + 1,
-  });
-
   /* ── setup GSAP on mount ──────────────────────────────────────── */
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const wraps    = wrapRefs.current.filter(Boolean) as HTMLDivElement[];
-    const stickers = stickerRefs.current.filter(Boolean) as HTMLDivElement[];
-
     const ctx = gsap.context(() => {
-      /* transform-origin: bottom center so rotation pivots at card base */
-      wraps.forEach((el, i) => {
-        gsap.set(el, {
-          transformOrigin : 'bottom center',
-          rotation        : CARDS[i].rot,
-          xPercent        : CARDS[i].ox,
-          yPercent        : CARDS[i].oy,
-          scale           : 1,
-          y               : 120,
-          opacity         : 0,
-          zIndex          : i + 1,
-        });
-      });
+      const wraps    = wrapRefs.current.filter(Boolean) as HTMLDivElement[];
+      const stickers = stickerRefs.current.filter(Boolean) as HTMLDivElement[];
+      
+      const mm = gsap.matchMedia();
 
-      /* stickers start hidden */
-      gsap.set(stickers, { opacity: 0, scale: 0.4, y: 18 });
-
-      /* ── CARD ENTRANCE on scroll ─────────────────────────────── */
-      ScrollTrigger.create({
-        trigger : sectionRef.current,
-        start   : 'top 65%',
-        once    : true,
-        onEnter : () => {
-          wraps.forEach((el, i) => {
-            gsap.to(el, {
-              y       : 0,
-              opacity : 1,
-              duration: 1.0,
-              ease    : 'power3.out',
-              delay   : i * 0.11,
-            });
-          });
-        },
-      });
-
-      /* ── TITLE UNDERLINE draw animation ─────────────────────── */
+      /* ── TITLE UNDERLINE draw animation (Global) ────────────────── */
       const paths = [svgLine1.current, svgLine2.current].filter(Boolean) as SVGPathElement[];
       paths.forEach((path, i) => {
-        if (!path) return;
         const len = path.getTotalLength();
         gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
         ScrollTrigger.create({
-          trigger : sectionRef.current,
-          start   : 'top 72%',
-          once    : true,
-          onEnter : () => {
+          trigger: sectionRef.current,
+          start: 'top 72%',
+          once: true,
+          onEnter: () => {
             gsap.to(path, {
-              strokeDashoffset : 0,
-              duration         : 0.95,
-              ease             : 'power2.inOut',
-              delay            : 0.2 + i * 0.18,
+              strokeDashoffset: 0,
+              duration: 0.95,
+              ease: 'power2.inOut',
+              delay: 0.2 + i * 0.18,
             });
           },
         });
       });
+
+      /* ── DESKTOP (≥ 768px): Fan Out ───────────────────────────── */
+      mm.add("(min-width: 768px)", () => {
+        wraps.forEach((el, i) => {
+          gsap.set(el, {
+            transformOrigin : 'bottom center',
+            rotation        : CARDS[i].rot,
+            xPercent        : CARDS[i].ox,
+            yPercent        : CARDS[i].oy,
+            scale           : 1,
+            y               : 120,
+            opacity         : 0,
+            zIndex          : i + 1,
+          });
+        });
+
+        gsap.set(stickers, { opacity: 0, scale: 0.4, y: 18 });
+
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: 'top 65%',
+          once: true,
+          onEnter: () => {
+            gsap.to(wraps, {
+              y: 0,
+              opacity: 1,
+              duration: 1.0,
+              ease: 'power3.out',
+              stagger: 0.11,
+            });
+          },
+        });
+
+        return () => {
+          gsap.killTweensOf(wraps);
+          gsap.killTweensOf(stickers);
+        };
+      });
+
+      /* ── MOBILE (< 768px): Deck Stack ─────────────────────────── */
+      mm.add("(max-width: 767px)", () => {
+        wraps.forEach((el, i) => {
+          gsap.set(el, {
+            transformOrigin: 'center center',
+            rotation: CARDS[i].rot, // Use original slight rotations to look like a messy deck
+            xPercent: 0, 
+            yPercent: 0,
+            scale: 1,
+            y: 100, // Slide up from bottom
+            opacity: 0,
+            zIndex: i + 1,
+          });
+        });
+
+        // Hide all stickers initially
+        gsap.set(stickers, { opacity: 0, scale: 0.4, y: 18 });
+
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: 'top 75%',
+          once: true,
+          onEnter: () => {
+            // Deal cards onto the stack
+            gsap.to(wraps, {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: 'back.out(1.2)',
+              stagger: 0.1, 
+            });
+
+            // Pop only the top card's sticker
+            const topSticker = stickers[stickers.length - 1];
+            if (topSticker) {
+              gsap.to(topSticker, {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 0.6,
+                delay: 0.6,
+                ease: 'back.out(1.8)'
+              });
+            }
+          }
+        });
+
+        return () => {
+          gsap.killTweensOf(wraps);
+          gsap.killTweensOf(stickers);
+        };
+      });
+
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  /* ── hover logic (DESKTOP ONLY) ─────────────────────────────── */
   const handleMouseEnter = (idx: number) => {
+    if (window.innerWidth < 768) return; // Prevent on mobile
+
     const wraps    = wrapRefs.current;
     const stickers = stickerRefs.current;
 
@@ -232,42 +278,36 @@ export default function ServicesSection() {
       if (!el) return;
       gsap.killTweensOf(el);
 
-      // Calculate how far this card is from the hovered card
       const distance = Math.abs(i - idx); 
-      
-      // Dynamic pushing: cards further away get pushed wider!
-      const pushX = 15 + (distance * 12); // Base 15% push + 12% extra per card slot
-      const leanAngle = 8 + (distance * 3); // Base 8deg lean + 3deg extra per card slot
+      const pushX = 15 + (distance * 12); 
+      const leanAngle = 8 + (distance * 3); 
 
       if (i === idx) {
-        // Hovered card
         gsap.to(el, {
-          rotation  : 0,
-          xPercent  : 0,
-          yPercent  : -9,
-          scale     : 1.06,
-          zIndex    : 20,
-          duration  : 0.55,
-          ease      : 'power2.out',
+          rotation : 0,
+          xPercent : 0,
+          yPercent : -9,
+          scale    : 1.06,
+          zIndex   : 20,
+          duration : 0.55,
+          ease     : 'power2.out',
         });
       } else if (i < idx) {
-        /* cards to the LEFT lean further left and push much wider */
         gsap.to(el, {
           rotation : CARDS[i].rot - leanAngle, 
           xPercent : CARDS[i].ox - pushX,  
           yPercent : CARDS[i].oy + 8,
-          scale    : 0.95, // Shrink slightly more to emphasize hovered card
+          scale    : 0.95,
           zIndex   : i + 1,
           duration : 0.55,
           ease     : 'power2.out',
         });
       } else {
-        /* cards to the RIGHT lean further right and push much wider */
         gsap.to(el, {
           rotation : CARDS[i].rot + leanAngle,
           xPercent : CARDS[i].ox + pushX,  
           yPercent : CARDS[i].oy + 8,
-          scale    : 0.95, // Shrink slightly more to emphasize hovered card
+          scale    : 0.95,
           zIndex   : i + 1,
           duration : 0.55,
           ease     : 'power2.out',
@@ -275,7 +315,6 @@ export default function ServicesSection() {
       }
     });
 
-    /* sticker spring-in (Kept exactly the same) */
     const sticker = stickers[idx];
     if (sticker) {
       gsap.killTweensOf(sticker);
@@ -288,8 +327,10 @@ export default function ServicesSection() {
       });
     }
   };
-  /* ── mouse leave: all cards return to resting positions ─────── */
+
   const handleMouseLeave = () => {
+    if (window.innerWidth < 768) return; // Prevent on mobile
+
     const wraps    = wrapRefs.current;
     const stickers = stickerRefs.current;
 
@@ -297,7 +338,11 @@ export default function ServicesSection() {
       if (!el) return;
       gsap.killTweensOf(el);
       gsap.to(el, {
-        ...getResting(i),
+        rotation : CARDS[i].rot,
+        xPercent : CARDS[i].ox,
+        yPercent : CARDS[i].oy,
+        scale    : 1,
+        zIndex   : i + 1,
         duration : 0.6,
         ease     : 'power2.inOut',
       });
@@ -316,17 +361,15 @@ export default function ServicesSection() {
     });
   };
 
-  /* ─────────────────────────────────────────────────────────────── */
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#f0ebe6] font-['DM_Sans',_Arial,_sans-serif] overflow-clip pt-[clamp(5rem,9vw,12rem)] pb-[clamp(6rem,12vw,19rem)]"
+      className="relative bg-[#f0ebe6] font-sans overflow-hidden pt-[clamp(5rem,9vw,12rem)] pb-[clamp(6rem,12vw,19rem)]"
     >
       {/* ── HEADER ─────────────────────────────────────────────── */}
-      <div className="flex flex-col items-center justify-center text-center mb-20 px-[clamp(1rem,5vw,6.75rem)]">
+      <div className="flex flex-col items-center justify-center text-center mb-16 md:mb-20 px-[clamp(1rem,5vw,6.75rem)]">
         <h2 className="text-[clamp(2.6rem,5.5vw,6.5rem)] font-black leading-none tracking-[-0.02em] lowercase text-[#2d2d2d] m-0">
-          call us if you{' '}
-          <em className="italic font-black">need:</em>
+          call us if you <em className="italic font-black">need:</em>
         </h2>
 
         {/* underline SVG */}
@@ -355,17 +398,26 @@ export default function ServicesSection() {
         </svg>
       </div>
 
-      {/* ── CARDS FAN ──────────────────────────────────────────── */}
-      <div className="flex items-end justify-center relative min-h-[400px] px-[clamp(1rem,4vw,5rem)]">
+      {/* ── CARDS FAN / STACK ──────────────────────────────────── */}
+      {/* Mobile: Uses grid overlapping to stack the cards perfectly in the center.
+        Desktop: Switches to flexbox for horizontal layout.
+      */}
+      <div className="grid place-items-center md:flex md:items-end md:justify-center relative min-h-[450px] md:min-h-[400px] px-4 md:px-[clamp(1rem,4vw,5rem)]">
         {CARDS.map((card, i) => (
           <div
             key={card.id}
             ref={(el) => { wrapRefs.current[i] = el; }}
             onMouseEnter={() => handleMouseEnter(i)}
             onMouseLeave={handleMouseLeave}
-            className={`relative shrink-0 w-[clamp(250px,25vw,290px)] cursor-pointer will-change-transform ${i === 0 ? 'ml-0' : '-ml-[clamp(40px,4.5vw,64px)]'}`}
+            // The grid-area trick forces them to stack without absolute positioning on mobile
+            className={`
+              [grid-area:1/1] md:[grid-area:auto] 
+              relative shrink-0 cursor-pointer will-change-transform 
+              w-[85vw] max-w-[340px] md:w-[clamp(250px,25vw,290px)]
+              ${i === 0 ? 'md:ml-0' : 'md:-ml-[clamp(40px,4.5vw,64px)]'}
+            `}
           >
-            {/* ── Sticker (hidden until hover) ───────────────── */}
+            {/* ── Sticker ────────────────────────────────────────── */}
             <div
               ref={(el) => { stickerRefs.current[i] = el; }}
               className={`absolute pointer-events-none z-10 ${card.stickerClass}`}
@@ -373,29 +425,16 @@ export default function ServicesSection() {
               <card.Sticker />
             </div>
 
-            {/* ── Card body ──────────────────────────────────── */}
-            <div className={`rounded-[1.25rem] p-6 h-[clamp(320px,30vw,400px)] flex flex-col  overflow-hidden relative ${card.bgClass}`}>
+            {/* ── Card body ──────────────────────────────────────── */}
+            <div className={`rounded-[1.25rem] p-6 min-h-[400px] md:h-[clamp(320px,30vw,400px)] flex flex-col overflow-hidden relative shadow-lg ${card.bgClass}`}>
               
-              {/* Title */}
               <h3 className={`text-[clamp(1.6rem,2.2vw,2.4rem)] font-black leading-none tracking-[-0.02em] mb-4 lowercase whitespace-pre-line ${card.textClass}`}>
                 {card.title}
               </h3>
 
               {/* Decorative divider line */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 250 6"
-                fill="none"
-                className="w-full mb-4"
-              >
-                <path
-                  d="M2.0019 3.05432C84.0122 2.70675 166.022 2.34756 248.04 2C244.505 2.66037 240.969 3.32077 237.434 3.98115"
-                  stroke={card.fill}
-                  strokeOpacity="0.35"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 6" fill="none" className="w-full mb-4">
+                <path d="M2.0019 3.05432C84.0122 2.70675 166.022 2.34756 248.04 2C244.505 2.66037 240.969 3.32077 237.434 3.98115" stroke={card.fill} strokeOpacity="0.35" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
 
               {/* Service list */}
@@ -403,13 +442,12 @@ export default function ServicesSection() {
                 {card.items.map((item, j) => (
                   <li key={j} className="flex items-start gap-[0.55rem]">
                     <StarBullet fill={card.fill} />
-                    <span className={`text-[clamp(0.75rem,1vw,0.9rem)] font-medium leading-[1.3] ${card.textClass}`}>
+                    <span className={`text-[clamp(0.85rem,1vw,0.9rem)] font-medium leading-[1.3] ${card.textClass}`}>
                       {item}
                     </span>
                   </li>
                 ))}
               </ul>
-
             </div>
           </div>
         ))}
