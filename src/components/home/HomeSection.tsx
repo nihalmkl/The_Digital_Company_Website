@@ -10,6 +10,7 @@ import PictureSection from "./PictureSection";
 import AnimatedTeamSection from "./TeamSection";
 import ServicesSection from "./Service";
 import SmoothScrollProvider from "../ui/SmoothScrollProvider";
+import Footer from "../ui/Samble";
 
 
 export default function HomePage() {
@@ -50,7 +51,7 @@ export default function HomePage() {
         </div>
 
          <div data-header-theme="light">
-        <FooterSection/>
+        <Footer/>
         </div>
       </div>
       </SmoothScrollProvider>

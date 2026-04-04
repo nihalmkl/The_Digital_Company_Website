@@ -392,7 +392,7 @@ export default function FlickSection() {
                 <div
                   key={c.id}
                   ref={(el) => { cardRefs.current[i] = el; }}
-                  className={`absolute inset-0 select-none [will-change:transform,opacity] ${i === activeIdx ? "cursor-grab" : "cursor-pointer"}`}
+                  className={`absolute inset-0 select-none [will-change:transform,opacity] ${i === activeIdx ? "cursor-[url('/assets/icons/cursordrag.svg')_12_12,grab] active:cursor-[url('/assets/icons/cursordrag.svg')_12_12,pointer]" : "cursor-[url('/assets/icons/cursordrag.svg')_12_12,pointer]"}`}
                   onClick={() => { if (i !== activeIdx) navigateTo(i); }}
                 >
                   {/* INNER WRAPPER: Handles the border, background, and clips the image/video */}
@@ -405,7 +405,7 @@ export default function FlickSection() {
                       src={c.image}
                       alt={c.title}
                       draggable={false}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover "
                       loading="lazy"
                     />
 
@@ -465,7 +465,7 @@ export default function FlickSection() {
           {/* ── Drag overlay (covers the collection, handles all pointer events) ── */}
           <div
             ref={draggerRef}
-            className="absolute -top-[40px] -bottom-[40px] -left-[80px] -right-[80px] z-10 cursor-grab touch-pan-y"
+            className="absolute -top-[40px] -bottom-[40px] -left-[80px] -right-[80px] z-10 cursor-[url('/assets/icons/cursordrag.svg')_12_12,grab]  touch-pan-y"
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerCancel}

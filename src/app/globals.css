@@ -92,6 +92,7 @@ body {
   color: var(--foreground);
   font-family: MontserratRegular, sans-serif;
   overflow-x: hidden;
+   cursor: url('/assets/icons/cursordefault.svg') 12 12, auto;
 }
 button:hover {
   cursor: pointer;
