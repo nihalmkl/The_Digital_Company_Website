@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 // Specific background colors/gradients based on the screenshot
 const COL_1_LOGOS = [
@@ -146,10 +146,7 @@ export default function Clients() {
       }
     }, sectionRef);
 
-    return () => {
-    ctx.revert()
-    ScrollTrigger.clearMatchMedia()   // ✅ add this
-  }
+    return () => ctx.revert(); 
   }, []);
 
   return (
@@ -209,7 +206,7 @@ export default function Clients() {
                 width="100%"
                 viewBox="0 0 386 127"
                 fill="none"
-                className="absolute block top-12 left-1/2 -translate-x-1/2 ml-[70px] sm:ml-[90px] w-[180px] sm:w-[220px] lg:top-[60px] lg:left-28 lg:translate-x-0 lg:ml-0 lg:w-full lg:max-w-[320px] text-black md:scale-y-[-1] rotate-40 md:rotate-15"
+                className="absolute block top-12 left-1/2 -translate-x-1/2 ml-[70px] sm:ml-[90px] w-[180px] sm:w-[220px] lg:top-[60px] lg:left-28 lg:translate-x-0 lg:ml-0 lg:w-full lg:max-w-[320px] text-black lg:scale-y-[-1] rotate-40 md:rotate-15"
               >
                 <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L356.5 105.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: "765px", strokeDashoffset: "765px" }}></path>
                 <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L384 97" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: "765px", strokeDashoffset: "765px" }}></path>
