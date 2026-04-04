@@ -227,7 +227,7 @@ export default function FutureSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#EBE8E2] text-zinc-900 pt-32 pb-24 overflow-hidden font-sans">
+    <section ref={sectionRef} className="relative w-full bg-[#EBE8E2] text-zinc-900 md:pt-32 pb-10 md:pb-24 overflow-hidden font-sans">
       
       {/* ─── Title Area ─── */}
       <div className="relative text-center z-20 mb-20 px-6">
@@ -260,7 +260,7 @@ export default function FutureSection() {
       </div>
 
       {/* ─── Cards & Tags Area ─── */}
-      <div className="relative flex items-center justify-center min-h-[500px] mt-10 md:mt-20">
+      <div className="relative flex items-center justify-center min-h-[380px] md:min-h-[500px] mt-10 md:mt-20">
         
         {/* UPDATED: Blue Blob - visible on mobile, positioned left on mobile, desktop stays same */}
         <div className="absolute top-1/2 -translate-y-1/2 w-[90vw] max-w-[550px] pointer-events-none z-0 block -left-[20%] md:left-70 md:-translate-x-1/4">
@@ -315,7 +315,7 @@ export default function FutureSection() {
       </div>
 
       {/* ─── Bottom Text ─── */}
-      <div className="relative z-20 w-full flex justify-center px-6 mt-20">
+      <div className="relative z-20 w-full flex justify-center px-6 mt-2 md:mt-20">
         <p className="text-center text-zinc-800 font-medium max-w-3xl leading-[1.6] cursor-[url('/assets/icons/cursortext.svg'),text]" style={{ fontSize: "clamp(16px, 1.5vw, 22px)" }}>
           To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs to out of home spectaculars.
         </p>

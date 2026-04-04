@@ -146,10 +146,10 @@ export default function Header() {
       <header className="fixed top-0 left-0 w-full px-6 md:px-10 py-8 z-[100] flex justify-between items-center pointer-events-none">
         
         {/* LEFT LOGO WRAPPER */}
-        <div ref={navLogoRef} className="relative pointer-events-auto cursor-pointer" onMouseEnter={handleLogoHover} onMouseLeave={handleLogoLeave}>
+        <div ref={navLogoRef} className=" opacity-0 -translate-y-[70px] relative pointer-events-auto cursor-pointer" onMouseEnter={handleLogoHover} onMouseLeave={handleLogoLeave}>
           
           {/* Work Dropdown Menu - RESPONSIVE WIDTH ADDED HERE */}
-          <div ref={dropdownRef} className="absolute top-[-2.2rem] md:top-[-1rem] left-[-1.5rem] md:left-[-1rem] w-[100vw] md:w-[320px] bg-[#EBE8E2] rounded-[1.5rem] p-5 pt-[4rem] shadow-2xl z-40 origin-top cursor-auto">
+          <div ref={dropdownRef} className="absolute opacity-0 invisible  top-[-2.2rem] md:top-[-1rem] left-[-1.5rem] md:left-[-1rem] w-[100vw] md:w-[320px] bg-[#EBE8E2] rounded-[1.5rem] p-5 pt-[4rem] shadow-2xl z-40 origin-top cursor-auto">
             <div className="flex flex-col gap-5">
               {[
                 { tag: "thsais", tagColor: "bg-[#EDA7AF] text-black", title: "skibidi school", img: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=150&h=150&fit=crop" },
@@ -186,7 +186,7 @@ export default function Header() {
           onMouseEnter={handleTruusEnter} 
           onMouseMove={handleTruusMove} 
           onMouseLeave={handleTruusLeave}
-          className="mix-blend-difference pointer-events-auto cursor-none origin-center"
+          className="opacity-0 -translate-y-[70px] mix-blend-difference pointer-events-auto cursor-none origin-center"
         >
           <Image
             src="/assets/icons/digitallogo.svg"
@@ -200,7 +200,7 @@ export default function Header() {
         {/* RIGHT ICON & DROPDOWN WRAPPER */}
         <div 
           ref={navIconRef} 
-          className="relative pointer-events-auto cursor-pointer"
+          className="opacity-0 -translate-y-[70px] relative pointer-events-auto cursor-pointer"
           onMouseEnter={handleWhatsAppHover} 
           onMouseLeave={handleWhatsAppLeave}
         >
@@ -208,7 +208,7 @@ export default function Header() {
           {/* WhatsApp Dropdown Card - RESPONSIVE WIDTH ADDED HERE */}
           <div 
             ref={whatsAppDropdownRef} 
-            className="absolute top-[-4em] md:top-[-2em] right-[-1.5rem] md:right-[-1em] mt-4 w-[100vw] md:w-[20em] h-auto md:h-[25em] min-h-[25em] bg-[#F0EBE6] rounded-[1em] py-6  shadow-xl z-40 cursor-auto flex flex-col items-center text-center"
+            className="absolute opacity-0 invisible  top-[-4em] md:top-[-2em] right-[-1.5rem] md:right-[-1em] mt-4 w-[100vw] md:w-[20em] h-auto md:h-[25em] min-h-[25em] bg-[#F0EBE6] rounded-[1em] py-6  shadow-xl z-40 cursor-auto flex flex-col items-center text-center"
           >
             {/* QR Code Placeholder Image */}
             <div className="bg-white p-2 rounded-xl mb-4 w-40 h-40 flex items-center justify-center border border-gray-200 shadow-sm">

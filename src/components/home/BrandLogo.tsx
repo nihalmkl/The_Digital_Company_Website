@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 // Specific background colors/gradients based on the screenshot
 const COL_1_LOGOS = [
@@ -146,7 +146,10 @@ export default function Clients() {
       }
     }, sectionRef);
 
-    return () => ctx.revert(); 
+    return () => {
+    ctx.revert()
+    ScrollTrigger.clearMatchMedia()   // ✅ add this
+  }
   }, []);
 
   return (

@@ -64,8 +64,9 @@ export default function HeroSection() {
     gsap.set(muteBadgeRef.current, { autoAlpha: 0, scale: 0.8, xPercent: -50, yPercent: -50 });
 
     gsap.to(smileyRef.current, { y: "-=10", rotation: 8, yoyo: true, repeat: -1, duration: 2.8, ease: "sine.inOut" });
+    if(sparkleRef.current){
     gsap.to(sparkleRef.current, { rotation: 360, repeat: -1, duration: 14, ease: "linear" });
-
+    }
     return () => gsap.killTweensOf([smileyRef.current, sparkleRef.current]);
   }, []);
 
@@ -211,7 +212,7 @@ export default function HeroSection() {
                   advertising
                 </span>{" "}
                 for
-                {/* Blue Smiley Face SVG */}
+                
                 <div
                   ref={smileyRef}
                   className="absolute pointer-events-none z-30"
@@ -291,7 +292,7 @@ export default function HeroSection() {
                 {/* Sparkle */}
                 <div
                   ref={sparkleRef}
-                  className="absolute pointer-events-none z-30"
+                  className="absolute pointer-events-none z-30 hidden md:block"
                   style={{
                     bottom: "3rem",
                     right: "18rem",

@@ -138,12 +138,12 @@ const CARDS = [
 ═══════════════════════════════════════════════════════════════════ */
 export default function ServicesSection() {
   const sectionRef   = useRef<HTMLElement>(null);
+  const cardsWrapperRef = useRef<HTMLDivElement>(null); // NEW: Reference for the grid wrapper
   const wrapRefs     = useRef<(HTMLDivElement | null)[]>([]);
   const stickerRefs  = useRef<(HTMLDivElement | null)[]>([]);
   const svgLine1     = useRef<SVGPathElement>(null);
   const svgLine2     = useRef<SVGPathElement>(null);
 
-  /* ── setup GSAP on mount ──────────────────────────────────────── */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const wraps    = wrapRefs.current.filter(Boolean) as HTMLDivElement[];
@@ -209,54 +209,75 @@ export default function ServicesSection() {
         };
       });
 
-      /* ── MOBILE (< 768px): Deck Stack ─────────────────────────── */
+      /* ── MOBILE (< 768px): Scroll Based Reveal ─────────────────────────── */
       mm.add("(max-width: 767px)", () => {
+        if (!cardsWrapperRef.current) return;
+
+        const scrollPerCard = window.innerHeight * 0.7; 
+        const totalScroll = scrollPerCard * (wraps.length - 1);
+
+        // 1. Initial Position Setup
         wraps.forEach((el, i) => {
           gsap.set(el, {
             transformOrigin: 'center center',
-            rotation: CARDS[i].rot, // Use original slight rotations to look like a messy deck
+            rotation: CARDS[i].rot, 
             xPercent: 0, 
             yPercent: 0,
             scale: 1,
-            y: 100, // Slide up from bottom
-            opacity: 0,
+            y: i === 0 ? 0 : window.innerHeight * 1.3, // Push off-screen
+            opacity: 1, 
             zIndex: i + 1,
           });
         });
 
-        // Hide all stickers initially
-        gsap.set(stickers, { opacity: 0, scale: 0.4, y: 18 });
-
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: 'top 75%',
-          once: true,
-          onEnter: () => {
-            // Deal cards onto the stack
-            gsap.to(wraps, {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: 'back.out(1.2)',
-              stagger: 0.1, 
+        // 2. Hide all stickers initially except the first one
+        stickers.forEach((sticker, i) => {
+            gsap.set(sticker, {
+                opacity: i === 0 ? 1 : 0,
+                scale: i === 0 ? 1 : 0.4,
+                y: i === 0 ? 0 : 20,
             });
+        });
 
-            // Pop only the top card's sticker
-            const topSticker = stickers[stickers.length - 1];
-            if (topSticker) {
-              gsap.to(topSticker, {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 0.6,
-                delay: 0.6,
-                ease: 'back.out(1.8)'
-              });
-            }
+        // 3. MASTER TIMELINE (This is the fix!)
+        // We create ONE ScrollTrigger timeline that handles the pin and the scrub
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: cardsWrapperRef.current,
+            start: 'top 20%', // Locks when the cards hit 20% from top
+            end: `+=${totalScroll}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 1, // Adds a slight smoothing effect to the scroll
+          }
+        });
+
+        // 4. Sequence the cards into the timeline
+        wraps.forEach((el, i) => {
+          if (i === 0) return; // First card is already visible
+
+          // Slide the card up (ease: 'none' is best for scrubbed timelines)
+          tl.to(el, {
+            y: 0,
+            ease: 'none',
+            duration: 1, // This is a relative duration within the timeline
+          });
+
+          // Pop the sticker in
+          const sticker = stickers[i];
+          if (sticker) {
+            tl.to(sticker, {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              ease: 'power2.out',
+              duration: 0.3
+            }, "-=0.2"); // The "-=0.2" makes the sticker pop right before the card finishes sliding
           }
         });
 
         return () => {
+          tl.kill(); // Ensure timeline is killed on resize/unmount
           gsap.killTweensOf(wraps);
           gsap.killTweensOf(stickers);
         };
@@ -399,17 +420,16 @@ export default function ServicesSection() {
       </div>
 
       {/* ── CARDS FAN / STACK ──────────────────────────────────── */}
-      {/* Mobile: Uses grid overlapping to stack the cards perfectly in the center.
-        Desktop: Switches to flexbox for horizontal layout.
-      */}
-      <div className="grid place-items-center md:flex md:items-end md:justify-center relative min-h-[450px] md:min-h-[400px] px-4 md:px-[clamp(1rem,4vw,5rem)]">
+      <div 
+        ref={cardsWrapperRef} 
+        className="grid place-items-center md:flex md:items-end md:justify-center relative min-h-[450px] md:min-h-[400px] px-4 md:px-[clamp(1rem,4vw,5rem)]"
+      >
         {CARDS.map((card, i) => (
           <div
             key={card.id}
             ref={(el) => { wrapRefs.current[i] = el; }}
             onMouseEnter={() => handleMouseEnter(i)}
             onMouseLeave={handleMouseLeave}
-            // The grid-area trick forces them to stack without absolute positioning on mobile
             className={`
               [grid-area:1/1] md:[grid-area:auto] 
               relative shrink-0 cursor-pointer will-change-transform 

@@ -19,8 +19,8 @@ export default function HomePage() {
       
       <IntroAnimation />
 
-  <SmoothScrollProvider>
       <Header/>
+  <SmoothScrollProvider>
 
       <div className="relative w-full flex flex-col">
         <div data-header-theme="light">

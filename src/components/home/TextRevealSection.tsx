@@ -283,7 +283,7 @@ export default function HorizontalWordsSection() {
 
         </div>
 
-        <div className="relative z-20 w-full flex justify-center px-6 mt-20">
+        <div className="relative z-20 w-full flex justify-center px-6 mt-10 md:mt-20">
           <p className="text-center text-zinc-800 font-medium max-w-2xl leading-[1.6] text-[clamp(16px,1.5vw,22px)] cursor-[url('/assets/icons/cursortext.svg'),text]">
             Audiences are more scattered  <em className="font-serif not-italic font-normal text-zinc-600">and</em>{" "} more reachable than ever. We help brands become leaders on the channels of the new mainstream.
           </p>
