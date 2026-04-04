@@ -134,12 +134,12 @@ export default function Header() {
         <div className="absolute bottom-full left-3 mb-1 bg-[#FFB1FF] text-black text-[13px] font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-sm">to home</div>
         
         <Image 
-  src="/assets/icons/cursorpointer.svg" 
-  alt="Cursor pointer" 
-  width={24} 
-  height={24} 
-  className="object-contain" 
-/>
+          src="/assets/icons/cursorpointer.svg" 
+          alt="Cursor pointer" 
+          width={24} 
+          height={24} 
+          className="object-contain" 
+        />
       </div>
 
       {/* GLOBAL FIXED HEADER */}
@@ -148,8 +148,8 @@ export default function Header() {
         {/* LEFT LOGO WRAPPER */}
         <div ref={navLogoRef} className="relative pointer-events-auto cursor-pointer" onMouseEnter={handleLogoHover} onMouseLeave={handleLogoLeave}>
           
-          {/* Dropdown Menu (Normal Colors) */}
-          <div ref={dropdownRef} className="absolute top-[-1rem] left-[-1.5rem] w-[320px] bg-[#EBE8E2] rounded-[1.5rem] p-5 pt-[4.5rem] shadow-2xl z-40 origin-top cursor-auto">
+          {/* Work Dropdown Menu - RESPONSIVE WIDTH ADDED HERE */}
+          <div ref={dropdownRef} className="absolute top-[-2.2rem] md:top-[-1rem] left-[-1.5rem] md:left-[-1rem] w-[100vw] md:w-[320px] bg-[#EBE8E2] rounded-[1.5rem] p-5 pt-[4rem] shadow-2xl z-40 origin-top cursor-auto">
             <div className="flex flex-col gap-5">
               {[
                 { tag: "thsais", tagColor: "bg-[#EDA7AF] text-black", title: "skibidi school", img: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=150&h=150&fit=crop" },
@@ -189,12 +189,11 @@ export default function Header() {
           className="mix-blend-difference pointer-events-auto cursor-none origin-center"
         >
           <Image
-           src="/assets/icons/digitallogo.svg"
-  alt="logo"
-  width={95}
-  height={30}
-  className="object-contain"
-  
+            src="/assets/icons/digitallogo.svg"
+            alt="logo"
+            width={95}
+            height={30}
+            className="object-contain"
           />
         </div>
 
@@ -206,10 +205,10 @@ export default function Header() {
           onMouseLeave={handleWhatsAppLeave}
         >
           
-          {/* WhatsApp Dropdown Card */}
+          {/* WhatsApp Dropdown Card - RESPONSIVE WIDTH ADDED HERE */}
           <div 
             ref={whatsAppDropdownRef} 
-            className="absolute top-[-2em] right-[-1em] mt-4 w-[20em] h-[25em] bg-[#F0EBE6] rounded-[1em] py-6  shadow-xl z-40 cursor-auto flex flex-col items-center text-center"
+            className="absolute top-[-4em] md:top-[-2em] right-[-1.5rem] md:right-[-1em] mt-4 w-[100vw] md:w-[20em] h-auto md:h-[25em] min-h-[25em] bg-[#F0EBE6] rounded-[1em] py-6  shadow-xl z-40 cursor-auto flex flex-col items-center text-center"
           >
             {/* QR Code Placeholder Image */}
             <div className="bg-white p-2 rounded-xl mb-4 w-40 h-40 flex items-center justify-center border border-gray-200 shadow-sm">
@@ -237,7 +236,6 @@ export default function Header() {
           </div>
 
           {/* WhatsApp SVG Icon */}
-          {/* Note: Removed mix-blend-difference and applied #25D366 directly to match standard WhatsApp color */}
           <button className={`${isDarkMode ? "text-black" : "text-white"} hover:text-[#25D366] hover:scale-110 transition-all duration-300 flex items-center justify-center relative z-50`}>
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 md:w-10 md:h-10">
                <path d="M12.01 2.005a9.99 9.99 0 0 0-8.5 15.26L2 22l4.88-1.46a9.988 9.988 0 0 0 14.12-11.51 9.987 9.987 0 0 0-8.99-7.025Zm4.8 13.56c-.22.62-1.28 1.18-1.78 1.25-.43.06-1 .13-3.21-.79-2.67-1.11-4.38-3.85-4.51-4.03-.14-.18-1.08-1.44-1.08-2.75 0-1.3.68-1.95.93-2.22.25-.28.54-.34.72-.34.18 0 .36 0 .52.01.19.01.42-.07.64.48.23.57.75 1.83.82 1.98.07.15.11.32.02.5-.09.18-.14.29-.28.45-.14.16-.3.34-.42.48-.14.15-.29.32-.12.61.16.29.72 1.21 1.55 1.95.12.11.25.21.37.31.57.48 1.14.73 1.44.88.3.15.47.13.65-.08.18-.21.77-.9 1.01-1.2.24-.3.48-.25.75-.15.27.1 1.73.82 2.03.96.3.15.5.22.57.34.07.12.07.7-.15 1.32Z" />

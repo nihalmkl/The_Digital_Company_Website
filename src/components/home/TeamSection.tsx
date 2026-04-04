@@ -439,58 +439,107 @@ export default function TeamSection() {
         style={{ fontFamily: "'DM Sans', Arial, sans-serif" }}
       >
         {/* ── Text heading ─────────────────────────────────────────────── */}
-        <div className="w-full max-w-[90em] mx-auto px-[2.5em] mb-[4em]">
+        <div className="w-full max-w-[90em] mx-auto px-4 md:px-[2.5em] mb-[4em]">
           <div className="flex flex-col items-center text-center justify-center w-full">
             <h2
               ref={headingRef}
-              className="text-[3em] md:text-[4.5em] lg:text-[5.5em] font-bold leading-[1.1] tracking-tight text-center mx-auto cursor-[url('/assets/icons/cursortext.svg'),text]"
+              className="text-[2em] md:text-[3em] lg:text-[4em] font-bold leading-[1.1] tracking-tight text-center mx-auto cursor-[url('/assets/icons/cursortext.svg'),text]"
             >
-              {/* ── LINE 1 ── */}
-              <div className="block">
-                <span className="inline-flex overflow-hidden align-bottom">
-                  <span className="inline-block">we are a&nbsp;</span>
-                </span>
+              {/* ── DESKTOP HEADING (3 Lines, hidden on mobile) ── */}
+              <div className="hidden md:block">
+                {/* ── LINE 1 ── */}
+                <div className="block">
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">we are a&nbsp;</span>
+                  </span>
+                  <em className="relative inline-block font-serif italic font-normal px-2">
+                    <span className="relative z-10 inline-block">young,</span>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[130%] pointer-events-none z-0">
+                      <CircleSVG />
+                    </div>
+                  </em>
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">&nbsp;future-proof</span>
+                  </span>
+                </div>
                 
-                <em className="relative inline-block font-serif italic font-normal px-2">
-                  <span className="relative z-10 inline-block">young,</span>
-                  {/* Scaled slightly so the circle naturally wraps the word */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[130%] pointer-events-none z-0">
-                    <CircleSVG />
-                  </div>
-                </em>
+                {/* ── LINE 2 ── */}
+                <div className="block mt-[-0.1em]">
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">team of&nbsp;</span>
+                  </span>
+                  <span className="inline-block tabular-nums counter-num">48</span>
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">&nbsp;digitally </span>
+                  </span>
+                </div>
                 
-                <span className="inline-flex overflow-hidden align-bottom">
-                  <span className="inline-block">&nbsp;future-proof</span>
-                </span>
+                {/* ── LINE 3 ── */}
+                <div className="block mt-[-0.1em]">
+                  <em className="relative inline-block font-serif italic font-normal pr-2 pb-[0.2em]">
+                    <span className="relative z-10 inline-block">native wunderkinder.</span>
+                    <div className="absolute -bottom-[0.2em] left-0 w-full h-auto pointer-events-none z-0">
+                      <LineSVG />
+                    </div>
+                  </em>
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">&nbsp;not to brag!</span>
+                  </span>
+                </div>
               </div>
-              
-              {/* ── LINE 2 ── */}
-              <div className="block mt-[-0.1em]">
-                <span className="inline-flex overflow-hidden align-bottom">
-                  <span className="inline-block">team of&nbsp;</span>
-                </span>
+
+              {/* ── MOBILE HEADING (5 Lines, hidden on desktop) ── */}
+              <div className="block md:hidden">
+                {/* ── LINE 1 ── */}
+                <div className="block">
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">we are a&nbsp;</span>
+                  </span>
+                  <em className="relative inline-block font-serif italic font-normal px-1">
+                    <span className="relative z-10 inline-block">young,</span>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[130%] pointer-events-none z-0">
+                      <CircleSVG />
+                    </div>
+                  </em>
+                </div>
                 
-                <span ref={countRef} className="inline-block tabular-nums">
-                  48
-                </span>
+                {/* ── LINE 2 ── */}
+                <div className="block mt-[-0.1em]">
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">future-proof team</span>
+                  </span>
+                </div>
                 
-                <span className="inline-flex overflow-hidden align-bottom">
-                  <span className="inline-block">&nbsp;digitally native</span>
-                </span>
-              </div>
-              
-              {/* ── LINE 3 ── */}
-              <div className="block mt-[-0.1em]">
-                <em className="relative inline-block font-serif italic font-normal pr-2 pb-[0.2em]">
-                  <span className="relative z-10 inline-block">wunderkinder.</span>
-                  <div className="absolute -bottom-[0.2em] left-0 w-full h-auto pointer-events-none z-0">
-                    <LineSVG />
-                  </div>
-                </em>
+                {/* ── LINE 3 ── */}
+                <div className="block mt-[-0.1em]">
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">of&nbsp;</span>
+                  </span>
+                  <span className="inline-block tabular-nums counter-num">48</span>
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">&nbsp;digitally</span>
+                  </span>
+                </div>
                 
-                <span className="inline-flex overflow-hidden align-bottom">
-                  <span className="inline-block">&nbsp;not to brag!</span>
-                </span>
+                {/* ── LINE 4 ── */}
+                <div className="block mt-[-0.1em]">
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">native&nbsp;</span>
+                  </span>
+                  <em className="relative inline-block font-serif italic font-normal pr-2 pb-[0.2em]">
+                    <span className="relative z-10 inline-block">wunderkinder.</span>
+                    <div className="absolute -bottom-[0.2em] left-0 w-full h-auto pointer-events-none z-0">
+                      <LineSVG />
+                    </div>
+                  </em>
+                </div>
+                
+                {/* ── LINE 5 ── */}
+                <div className="block mt-[-0.1em]">
+                  <span className="inline-flex overflow-hidden align-bottom">
+                    <span className="inline-block">not to brag!</span>
+                  </span>
+                </div>
               </div>
             </h2>
           </div>
@@ -509,25 +558,35 @@ export default function TeamSection() {
             <Blob2 />
           </div>
 
-          {/* 2. Drawn Connecting Lines */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
             viewBox="0 0 378 127"
             fill="none"
-            className="absolute top-[20%] left-[30%] w-[25%] pointer-events-none z-[15] text-white rotate-[45deg] opacity-90 stroke-[#f0ebe6]"
+            className="hidden md:block absolute top-[20%] left-[30%] w-[25%] pointer-events-none z-[15] text-white rotate-[45deg] opacity-90 stroke-[#f0ebe6]"
           >
             <path
               d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118"
               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="draw-path"
             />
           </svg>
+
+          {/* Mobile Squiggle */}
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 200 200" 
+            fill="none" 
+            className="block md:hidden absolute top-[13%] right-[-2%] w-[45%] pointer-events-none z-[15] text-white opacity-90 stroke-[#f0ebe6] rotate-30"
+          >
+             <path d="M 0 0 C 50 10, 60 80, 20 90 C -20 100, -10 20, 40 10 C 100 0, 150 40, 180 120 C 200 180, 200 200, 200 200" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="draw-path" />
+          </svg>
+
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
             viewBox="0 0 119 83"
             fill="none"
-            className="absolute bottom-[10%] left-[40%] w-[9%] pointer-events-none z-[100] text-white rotate-90 opacity-90 stroke-[#f0ebe6]"
+            className="hidden md:block absolute bottom-[10%] left-[40%] w-[9%] pointer-events-none z-[100] text-white rotate-90 opacity-90 stroke-[#f0ebe6]"
           >
             <path
               d="M2.20715 14.5599C2.20715 14.5599 37.0608 45.1156 67.5218 1.69971C46.2609 42.8794 94.5128 38.3901 102.486 34.9303C94.1065 41.0482 85.1095 75.705 116.798 80.5908"
@@ -535,17 +594,24 @@ export default function TeamSection() {
             />
           </svg>
 
-          {/* 3. Floating Interactive Stickers */}
-          <div className="sticker-wrap absolute left-[22%] top-[17%] z-30 pointer-events-auto cursor-pointer"><Sticker1 /></div>
+          <div className="sticker-wrap absolute z-30 pointer-events-auto cursor-pointer top-[7%] left-[35%] w-[8em] md:left-[22%] md:top-[17%] md:w-[9.5em]">
+            <Sticker1 />
+          </div>
           <div className="sticker-wrap absolute right-[6%] top-[10%] z-30 pointer-events-auto cursor-pointer"><Sticker2 /></div>
           <div className="sticker-wrap absolute left-[58%] top-[45%] z-30 pointer-events-auto cursor-pointer"><Sticker3 /></div>
           <div className="sticker-wrap absolute left-[13%] bottom-[30%] z-30 pointer-events-auto cursor-pointer"><Sticker4 /></div>
           <div className="sticker-wrap absolute right-[14%] bottom-[0%] z-30 pointer-events-auto cursor-pointer"><Sticker5 /></div>
 
-          {/* 4. The Meticulous 12-Col Scattered Grid */}
-          <div ref={gridRef} className="flex flex-col gap-8 relative z-10 md:grid md:grid-cols-12 md:gap-6">
-            <div className="team-card-wrap md:col-[3/6] md:row-[1] md:z-10"><ImageCycleCard card={teamCards[0]} tall={true} /></div>
-            <div className="team-card-wrap md:col-[1/4] md:row-[1] md:mt-[16vw] md:z-20"><ImageCycleCard card={teamCards[1]} tall={false} /></div>
+          <div ref={gridRef} className="flex flex-col relative z-10 md:grid md:grid-cols-12 md:gap-6 pb-20">
+            {/* Card 1 */}
+            <div className="team-card-wrap w-[70%] self-end mr-4 z-10 md:w-auto md:self-auto md:mr-0 md:col-[3/6] md:row-[1] md:z-10">
+              <ImageCycleCard card={teamCards[0]} tall={true} />
+            </div>
+            
+            {/* Card 2 */}
+            <div className="team-card-wrap w-[65%] self-start ml-2 -mt-[25%] z-20 md:w-auto md:self-auto md:ml-0 md:-mt-0 md:col-[1/4] md:row-[1] md:mt-[16vw] md:z-20">
+              <ImageCycleCard card={teamCards[1]} tall={false} />
+            </div>
             <div className="team-card-wrap md:col-[9/12] md:row-[1] md:mt-[8vw] md:z-10"><ImageCycleCard card={teamCards[2]} tall={false} /></div>
             <div className="team-card-wrap md:col-[6/9] md:row-[2] md:mt-[0vw] md:z-[15]"><ImageCycleCard card={teamCards[3]} tall={false} /></div>
             <div className="team-card-wrap md:col-[8/11] md:row-[3] md:-mt-[10vw] md:z-20"><ImageCycleCard card={teamCards[4]} tall={false} /></div>

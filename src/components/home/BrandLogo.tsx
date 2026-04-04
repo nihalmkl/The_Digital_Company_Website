@@ -155,7 +155,7 @@ export default function Clients() {
       className="relative w-full overflow-hidden bg-[#f0ebe6] font-['DM_Sans',_Arial,_sans-serif] text-[#2d2d2d] py-16 lg:py-32"
     >
       <div className="mx-auto w-full max-w-[1440px] px-0 lg:px-20">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-1 lg:gap-20">
           
           {/* ── LEFT COLUMN: TITLE & ILLUSTRATIONS ── */}
           <div className="relative w-full lg:w-[45%] flex flex-col items-center lg:items-start z-10 px-6 lg:pl-10 text-center lg:text-left">
@@ -267,7 +267,7 @@ export default function Clients() {
 
           {/* MOBILE (<1024px): 2 HORIZONTAL MARQUEES */}
           {/* Increased mt-12 sm:mt-16 to give spacing below the arrow */}
-          <div className="block lg:hidden relative w-full overflow-hidden mt-12 sm:mt-16 flex flex-col gap-4 sm:gap-6 py-4">
+          <div className="block lg:hidden relative w-full overflow-hidden mt-1 sm:mt-1 flex flex-col gap-4 sm:gap-6 py-4">
             {/* Left & Right Fade Overlays */}
             <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-[#f0ebe6] to-transparent z-20 pointer-events-none"></div>
             <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-[#f0ebe6] to-transparent z-20 pointer-events-none"></div>
